@@ -6,34 +6,34 @@ public class DatabaseContext : DbContext
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
-        public DbSet<Character> Characters { get; set; }
-        public DbSet<Backpack> Backpacks { get; set; }
-        public DbSet<Item> Items { get; set; }
-        public DbSet<Title> Titles { get; set; }
-        public DbSet<CharacterTitle> CharacterTitles { get; set; }
+        public DbSet<Characters> Characters { get; set; }
+        public DbSet<Backpacks> Backpacks { get; set; }
+        public DbSet<Items> Items { get; set; }
+        public DbSet<Titles> Titles { get; set; }
+        public DbSet<Character_Titles> CharacterTitles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Backpack>().HasKey(b => new { b.CharacterId, b.ItemId });
-            modelBuilder.Entity<CharacterTitle>().HasKey(ct => new { ct.CharacterId, ct.TitleId });
+            modelBuilder.Entity<Backpacks>().HasKey(b => new { b.CharacterId, b.ItemId });
+            modelBuilder.Entity<Character_Titles>().HasKey(ct => new { ct.CharacterId, ct.TitleId });
 
-            modelBuilder.Entity<Backpack>().HasData(new List<Backpack>
+            modelBuilder.Entity<Backpacks>().HasData(new List<Backpacks>
             {
-                new Backpack
+                new Backpacks
                 {
                     CharacterId = 1,
                     ItemId = 1,
                     Amount = 10
                 },
-                new Backpack
+                new Backpacks
                 {
                     CharacterId = 1,
                     ItemId = 2,
                     Amount = 5
                 },
-                new Backpack
+                new Backpacks
                 {
                     CharacterId = 2,
                     ItemId = 3,
@@ -41,9 +41,9 @@ public class DatabaseContext : DbContext
                 },
             });
 
-            modelBuilder.Entity<Character>().HasData(new List<Character>
+            modelBuilder.Entity<Characters>().HasData(new List<Characters>
             {
-                new Character
+                new Characters
                 {
                     Id = 1,
                     FirstName = "Kacper",
@@ -51,7 +51,7 @@ public class DatabaseContext : DbContext
                     CurrentWeight = 10,
                     MaxWeight = 1060
                 },
-                new Character
+                new Characters
                 {
                     Id = 2,
                     FirstName = "Grzegorz",
@@ -59,7 +59,7 @@ public class DatabaseContext : DbContext
                     CurrentWeight = 5,
                     MaxWeight = 25
                 },
-                new Character
+                new Characters
                 {
                     Id = 3,
                     FirstName = "Michal",
@@ -69,21 +69,21 @@ public class DatabaseContext : DbContext
                 },
             });
 
-            modelBuilder.Entity<CharacterTitle>().HasData(new List<CharacterTitle>
+            modelBuilder.Entity<Character_Titles>().HasData(new List<Character_Titles>
             {
-                new CharacterTitle
+                new Character_Titles
                 {
                     CharacterId = 1,
                     TitleId = 1,
                     AcquiredAt = DateTime.Now
                 },
-                new CharacterTitle
+                new Character_Titles
                 {
                     CharacterId = 2,
                     TitleId = 2,
                     AcquiredAt = DateTime.Now
                 },
-                new CharacterTitle
+                new Character_Titles
                 {
                     CharacterId = 3,
                     TitleId = 3,
@@ -91,21 +91,21 @@ public class DatabaseContext : DbContext
                 },
             });
 
-            modelBuilder.Entity<Item>().HasData(new List<Item>
+            modelBuilder.Entity<Items>().HasData(new List<Items>
             {
-                new Item
+                new Items
                 {
                     Id = 1,
                     Name = "Banan",
                     Weight = 5
                 },
-                new Item
+                new Items
                 {
                     Id = 2,
                     Name = "AK47",
                     Weight = 10
                 },
-                new Item
+                new Items
                 {
                     Id = 3,
                     Name = "Papier",
@@ -113,19 +113,19 @@ public class DatabaseContext : DbContext
                 },
             });
 
-            modelBuilder.Entity<Title>().HasData(new List<Title>
+            modelBuilder.Entity<Titles>().HasData(new List<Titles>
             {
-                new Title
+                new Titles
                 {
                     Id = 1,
                     Name = "Mag"
                 },
-                new Title
+                new Titles
                 {
                     Id = 2,
                     Name = "Raper"
                 },
-                new Title
+                new Titles
                 {
                     Id = 3,
                     Name = "Informatyk"

@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APBD_kol2.Models;
 
+[Table("items")]
 
-public class Item
+public class Items
 {
     [Key]
     public int Id { get; set; }
@@ -11,5 +13,5 @@ public class Item
     public string Name { get; set; }
     public int Weight { get; set; }
     
-    public ICollection<Backpack> backpacks { get; set; } = new HashSet<Backpack>();
+    public ICollection<Backpacks> backpacks { get; set; } = new HashSet<Backpacks>();
 }

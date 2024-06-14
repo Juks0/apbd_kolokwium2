@@ -57,11 +57,11 @@ namespace APBD_kol2.Services
         {
             var items = await _context.Backpacks
                 .Where(b => b.CharacterId == characterId)
-                .Include(b => b.Item)
+                .Include(b => b.Items)
                 .Select(b => new BackpackInfoDto
                 {
-                    itemName = b.Item.Name,
-                    itemWeight = b.Item.Weight,
+                    itemName = b.Items.Name,
+                    itemWeight = b.Items.Weight,
                     amount = b.Amount
                 })
                 .ToListAsync();
@@ -73,10 +73,10 @@ namespace APBD_kol2.Services
         {
             var titles = await _context.CharacterTitles
                 .Where(ct => ct.CharacterId == characterId)
-                .Include(ct => ct.Title)
+                .Include(ct => ct.Titles)
                 .Select(ct => new TitleInfoDto
                 {
-                    title = ct.Title.Name,
+                    title = ct.Titles.Name,
                     acquiredAt = ct.AcquiredAt
                 })
                 .ToListAsync();
@@ -135,7 +135,7 @@ namespace APBD_kol2.Services
             }
             else
             {
-                var backpack = new Backpack()
+                var backpack = new Backpacks()
                 {
                     CharacterId = characterId,
                     ItemId = itemId,

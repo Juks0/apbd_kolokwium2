@@ -1,8 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APBD_kol2.Models;
 
-public class Character
+[Table("characters")]
+
+public class Characters
 {
     [Key]
     public int Id { get; set; }
@@ -13,7 +16,7 @@ public class Character
     public int CurrentWeight { get; set; }
     public int MaxWeight { get; set; }
     
-    public ICollection<Backpack> Backpacks { get; set; } = new HashSet<Backpack>();
+    public ICollection<Backpacks> Backpacks { get; set; } = new HashSet<Backpacks>();
     
-    public ICollection<CharacterTitle> CharacterTitles { get; set; } = new HashSet<CharacterTitle>();
+    public ICollection<Character_Titles> CharacterTitles { get; set; } = new HashSet<Character_Titles>();
 }
